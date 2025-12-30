@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mostafa Salah - ICT Consultant</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Better Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --info-color: #1abc9c;
+            --light-color: #f8f9fa;
+            --dark-color: #2c3e50;
+            --text-color: #333333;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: #ffffff;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--secondary-color);
+            display: inline-block;
+        }
+        
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            background: linear-gradient(135deg, #1a2530 0%, #2c3e50 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .sidebar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .sidebar::-webkit-scrollbar-thumb {
+            background: var(--secondary-color);
+            border-radius: 10px;
+        }
+        
+        /* PROFILE PHOTO - YOU CAN EASILY CHANGE THIS */
+        .profile-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            overflow: hidden;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+            background: linear-gradient(135deg, var(--secondary-color), #2980b9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .profile-photo .photo-placeholder {
+            font-size: 4rem;
+            color: white;
+        }
+        
+        .profile-photo input[type="file"] {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 40px;
+            height: 40px;
+            opacity: 0;
+            cursor: pointer;
+            z-index: 2;
+        }
+        
+        .profile-photo .upload-icon {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 40px;
+            height: 40px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+        
+        .profile-photo .upload-icon:hover {
+            background: #2980b9;
+            transform: scale(1.1);
+        }
+        
+        .nav-links-container {
+            position: sticky;
+            top: 20px;
+            max-height: calc(100vh - 350px);
+            overflow-y: auto;
+            padding-right: 10px;
+            margin: 2rem 0;
+        }
+        
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .nav-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.85rem 1.2rem;
+            display: flex;
+            align-items: center;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.05);
+            font-size: 1rem;
+        }
+        
+        .nav-links a i {
+            width: 25px;
+            margin-right: 12px;
+            font-size: 1.1rem;
+        }
+        
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--secondary-color);
+            transform: translateX(5px);
+        }
+        
+        .nav-links a.active {
+            background: var(--secondary-color);
+            color: white;
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+        
+        /* ===== MAIN CONTENT ===== */
+        .main-content {
+            padding-left: 0;
+            background: #ffffff;
+        }
+        
+        section {
+            padding: 5rem 0;
+        }
+        
+        section:nth-child(odd) {
+            background: #f8fafc;
+        }
+        
+        /* ===== HERO SECTION - SIMPLE BACKGROUND ===== */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1a2530 100%);
+            padding: 6rem 0;
+            text-align: center;
+            color: rgb(4, 4, 233);
+            position: relative;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%233498db' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+        
+        .hero-icon {
+            font-size: 5rem;
+            color: white;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-section h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+            font-weight: 700;
+        }
+        
+        .hero-section .lead {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            position: relative;
+            z-index: 1;
+            font-weight: 300;
+        }
+        
+        .btn-hero {
+            background: white;
+            color: var(--primary-color);
+            border: none;
+            padding: 0.9rem 2.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+            position: relative;
+            z-index: 1;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn-hero:hover {
+            background: var(--secondary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .btn-hero-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 0.9rem 2.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+            position: relative;
+            z-index: 1;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn-hero-outline:hover {
+            background: white;
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        /* ===== SERVICES ===== */
+        .service-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            height: 100%;
+            border: 1px solid rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .service-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            width: 90px;
+            height: 90px;
+            line-height: 90px;
+            border-radius: 50%;
+        }
+        
+        .service-icon.color-1 { background: rgba(52, 152, 219, 0.1); color: var(--secondary-color); }
+        .service-icon.color-2 { background: rgba(46, 204, 113, 0.1); color: var(--success-color); }
+        .service-icon.color-3 { background: rgba(155, 89, 182, 0.1); color: #9b59b6; }
+        .service-icon.color-4 { background: rgba(241, 196, 15, 0.1); color: #f1c40f; }
+        .service-icon.color-5 { background: rgba(230, 126, 34, 0.1); color: #e67e22; }
+        .service-icon.color-6 { background: rgba(231, 76, 60, 0.1); color: var(--accent-color); }
+        
+        /* ===== STATS COUNTER ===== */
+        .stats-section {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 4rem 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        /* ===== SKILLS ===== */
+        .skill-item {
+            margin-bottom: 2rem;
+        }
+        
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 1.05rem;
+        }
+        
+        .progress {
+            height: 12px;
+            border-radius: 6px;
+            background: rgba(0,0,0,0.05);
+        }
+        
+        .progress-bar {
+            border-radius: 6px;
+        }
+        
+        /* ===== EDUCATION & EXPERIENCE ===== */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--secondary-color), var(--primary-color));
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+            padding-left: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 5px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px var(--secondary-color);
+        }
+        
+        .timeline-date {
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.4rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        /* ===== PORTFOLIO ===== */
+        .portfolio-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            margin-bottom: 2rem;
+            height: 100%;
+        }
+        
+        .portfolio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .portfolio-icon {
+            background: linear-gradient(135deg, var(--secondary-color), #2980b9);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            font-size: 3.5rem;
+        }
+        
+        .portfolio-content {
+            padding: 2rem;
+        }
+        
+        /* ===== BLOG ===== */
+        .blog-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            margin-bottom: 2rem;
+            height: 100%;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .blog-header {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .blog-content {
+            padding: 2rem;
+        }
+        
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* ===== CONTACT ===== */
+        .contact-info-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        
+        /* ===== MOBILE RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .sidebar {
+                position: fixed;
+                left: -100%;
+                top: 0;
+                width: 320px;
+                transition: left 0.4s ease;
+                z-index: 1001;
+                box-shadow: 5px 0 25px rgba(0,0,0,0.15);
+                height: 100vh;
+            }
+            
+            .sidebar.active {
+                left: 0;
+            }
+            
+            .nav-links-container {
+                max-height: calc(100vh - 400px);
+            }
+            
+            .floating-menu-btn {
+                display: block;
+                position: fixed;
+                bottom: 25px;
+                right: 25px;
+                z-index: 1000;
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                background: var(--primary-color);
+                color: white;
+                border: none;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                cursor: pointer;
+                font-size: 1.5rem;
+                transition: all 0.3s ease;
+            }
+            
+            .floating-menu-btn:hover {
+                background: var(--secondary-color);
+                transform: scale(1.1);
+            }
+            
+            .back-to-top {
+                position: fixed;
+                bottom: 100px;
+                right: 25px;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background: var(--secondary-color);
+                color: white;
+                border: none;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                cursor: pointer;
+                z-index: 999;
+                display: none;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.2rem;
+            }
+            
+            .back-to-top.show {
+                display: flex;
+            }
+            
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-section .lead {
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (min-width: 993px) {
+            .floating-menu-btn, .back-to-top {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Menu Button (Mobile Only) -->
+    <button id="menuToggle" class="floating-menu-btn">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <!-- SIDEBAR NAVIGATION -->
+            <div class="col-lg-3 col-md-4 sidebar">
+                <div class="text-center">
+                    <!-- PROFILE PHOTO WITH UPLOAD FUNCTIONALITY -->
+                    <div class="profile-photo" id="profilePhotoContainer">
+                        <!-- Default placeholder - will be replaced when you upload a photo -->
+                        <div class="photo-placeholder">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <!-- This img will show when you upload a photo -->
+                        <img id="profileImage" src="" alt="Mostafa Salah" style="display: none;">
+                        
+                        <!-- Hidden file input -->
+                        <input type="file" id="photoUpload" accept="image/*" style="display: none;">
+                        
+                        <!-- Upload icon -->
+                        <div class="upload-icon" id="uploadTrigger">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                    </div>
+                    
+                    <h1 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Mostafa Salah</h1>
+                    <p class="lead" style="font-size: 1.1rem; margin-bottom: 0.5rem;">
+                        <i class="fas fa-laptop-code"></i> ICT Consultant
+                    </p>
+                    <p style="font-size: 0.95rem; opacity: 0.9;">
+                        <i class="fas fa-map-marker-alt"></i> Giza, EGYPT
+                    </p>
+                </div>
+                
+                <!-- Navigation Links Container -->
+                <div class="nav-links-container">
+                    <ul class="nav-links">
+                        <li><a href="#home" class="active"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
+                        <li><a href="#services"><i class="fas fa-cogs"></i> Services</a></li>
+                        <li><a href="#skills"><i class="fas fa-chart-bar"></i> Skills</a></li>
+                        <li><a href="#education"><i class="fas fa-graduation-cap"></i> Education</a></li>
+                        <li><a href="#experience"><i class="fas fa-briefcase"></i> Experience</a></li>
+                        <li><a href="#portfolio"><i class="fas fa-laptop-code"></i> Portfolio</a></li>
+                        <li><a href="#blog"><i class="fas fa-blog"></i> Blog</a></li>
+                        <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <p class="small" style="font-size: 0.85rem; opacity: 0.7;">
+                        © <span id="currentYear"></span> Mostafa Salah. All rights reserved.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- MAIN CONTENT -->
+            <div class="col-lg-9 col-md-8 main-content">
+                
+                <!-- HERO SECTION -->
+                <section id="home" class="hero-section">
+                    <div class="container">
+                        <div class="hero-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h1>Hi! I'm Mostafa Salah</h1>
+                        <h2 class="h3 mb-4" style="font-weight: 500; opacity: 0.9;">ICT Consultant & Technical Specialist</h2>
+                        <p class="lead mb-4">10+ years experience in IT infrastructure, networking, Microsoft technologies, Azure, and Power Platform solutions</p>
+                        <div class="mt-5">
+                            <!-- CV DOWNLOAD BUTTON - UPDATE THE HREF WITH YOUR ACTUAL CV FILE -->
+                            <a href="Mostafa_Salah_CV.pdf" class="btn-hero" download>
+                                <i class="fas fa-download me-2"></i> Download My CV
+                            </a>
+                            <a href="#portfolio" class="btn-hero-outline">
+                                <i class="fas fa-briefcase me-2"></i> View Portfolio
+                            </a>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- ABOUT SECTION -->
+                <section id="about" class="py-5">
+                    <div class="container">
+                        <h2 class="section-title">About Me</h2>
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <p class="lead" style="font-size: 1.2rem;"><strong>Hi I'm Mostafa Salah</strong> - ICT Consultant with 10+ years of experience in technical support and network administration.</p>
+                                <p style="font-size: 1.05rem;">Experienced and knowledgeable ICT Advisor with expertise in Azure and Power Platform, focusing on driving business outcomes through technology innovation.</p>
+                                <p style="font-size: 1.05rem;">Proficient in Microsoft technologies and certified in CCNA and MCSE. Passionate about digital transformation and helping organizations optimize their IT infrastructure.</p>
+                                
+                                <div class="row mt-5">
+                                    <div class="col-md-6">
+                                        <h5 style="font-size: 1.15rem; margin-bottom: 1rem;">
+                                            <i class="fas fa-check-circle text-success me-2"></i> Key Strengths
+                                        </h5>
+                                        <ul class="list-unstyled" style="font-size: 1rem;">
+                                            <li><i class="fas fa-angle-right text-primary me-2"></i> Network Design & Implementation</li>
+                                            <li><i class="fas fa-angle-right text-primary me-2"></i> Cloud Migration & Management</li>
+                                            <li><i class="fas fa-angle-right text-primary me-2"></i> System Security & Compliance</li>
+                                            <li><i class="fas fa-angle-right text-primary me-2"></i> Technical Team Leadership</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h5 style="font-size: 1.15rem; margin-bottom: 1rem;">
+                                            <i class="fas fa-certificate text-warning me-2"></i> Certifications
+                                        </h5>
+                                        <ul class="list-unstyled" style="font-size: 1rem;">
+                                            <li><i class="fas fa-award text-primary me-2"></i> CCNA - Cisco Certified</li>
+                                            <li><i class="fas fa-award text-primary me-2"></i> MCSE - Microsoft Certified</li>
+                                            <li><i class="fas fa-award text-primary me-2"></i> Azure Fundamentals</li>
+                                            <li><i class="fas fa-award text-primary me-2"></i> ITIL Foundation</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="service-card">
+                                    <div class="service-icon color-1">
+                                        <i class="fas fa-cloud"></i>
+                                    </div>
+                                    <h4>Microsoft 365 & Azure</h4>
+                                    <p>Cloud solutions, migration, and management</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mt-4">
+                            <div class="col-md-3 mb-4">
+                                <div class="service-card">
+                                    <div class="service-icon color-2">
+                                        <i class="fas fa-sitemap"></i>
+                                    </div>
+                                    <h5>SharePoint & Power Platform</h5>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-4">
+                                <div class="service-card">
+                                    <div class="service-icon color-3">
+                                        <i class="fas fa-tools"></i>
+                                    </div>
+                                    <h5>Hardware Maintenance</h5>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-4">
+                                <div class="service-card">
+                                    <div class="service-icon color-4">
+                                        <i class="fas fa-network-wired"></i>
+                                    </div>
+                                    <h5>CISCO & Networking</h5>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-4">
+                                <div class="service-card">
+                                    <div class="service-icon color-5">
+                                        <i class="fas fa-headset"></i>
+                                    </div>
+                                    <h5>ICT Support</h5>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-5">
+                            <h3 style="font-size: 1.8rem;">4+ Successful Projects Completed!</h3>
+                            <p class="mb-4" style="font-size: 1.05rem;">Ready to bring your IT projects to life</p>
+                            <a href="#contact" class="btn btn-primary btn-lg" style="padding: 0.8rem 2.5rem; font-size: 1.05rem;">
+                                <i class="fas fa-handshake me-2"></i> Hire Me
+                            </a>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- SERVICES SECTION -->
+                <section id="services" class="py-5 bg-light">
+                    <div class="container">
+                        <h2 class="section-title">My Services</h2>
+                        <p class="lead text-center mb-5" style="font-size: 1.2rem;">Comprehensive IT solutions for modern businesses</p>
+                        
+                        <div class="row">
+                            <div class="col-md-4 mb-4">
+                                <div class="service-card">
+                                    <div class="service-icon color-1">
+                                        <i class="fas fa-network-wired"></i>
+                                    </div>
+                                    <h4>Networks & Telecom</h4>
+                                    <p style="font-size: 0.95rem;">Installing, monitoring, troubleshooting, and upgrading network infrastructure including hardware and software components.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="service-card">
+                                    <div class="service-icon color-2">
+                                        <i class="fas fa-digital-tachograph"></i>
+                                    </div>
+                                    <h4>Digital Transformation</h4>
+                                    <p style="font-size: 0.95rem;">Supporting organizations in digitalizing working methods using Microsoft 365, Power Platform, and Cloud systems.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="service-card">
+                                    <div class="service-icon color-3">
+                                        <i class="fas fa-mobile-alt"></i>
+                                    </div>
+                                    <h4>Application Development</h4>
+                                    <p style="font-size: 0.95rem;">Developing Power Platform solutions (Power Automate, PowerApps, SharePoint) to automate daily workflows.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-4 mb-4">
+                                <div class="service-card">
+                                    <div class="service-icon color-4">
+                                        <i class="fas fa-server"></i>
+                                    </div>
+                                    <h4>IT Operations</h4>
+                                    <p style="font-size: 0.95rem;">Installing/configuring hardware, software, networks, printers, cameras, routers, access points, and antennae.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="service-card">
+                                    <div class="service-icon color-5">
+                                        <i class="fas fa-wrench"></i>
+                                    </div>
+                                    <h4>Troubleshooting</h4>
+                                    <p style="font-size: 0.95rem;">Maintenance of hardware and software for PCs, laptops, and network systems. Quick diagnosis and resolution.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="service-card">
+                                    <div class="service-icon color-6">
+                                        <i class="fas fa-headset"></i>
+                                    </div>
+                                    <h4>Technical Support</h4>
+                                    <p style="font-size: 0.95rem;">Investigating network problems, collecting ICT usage stats, recommending improvements, and installing ICT solutions.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- STATS SECTION -->
+                <section class="stats-section">
+                    <div class="container">
+                        <div class="row text-center">
+                            <div class="col-md-3 col-6 mb-4">
+                                <div class="stat-item">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-coffee"></i>
+                                    </div>
+                                    <div class="stat-number" data-count="309">0</div>
+                                    <p style="font-size: 1.05rem;">Cups of Coffee</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6 mb-4">
+                                <div class="stat-item">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-project-diagram"></i>
+                                    </div>
+                                    <div class="stat-number" data-count="356">0</div>
+                                    <p style="font-size: 1.05rem;">Projects Completed</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6 mb-4">
+                                <div class="stat-item">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <div class="stat-number" data-count="30">0</div>
+                                    <p style="font-size: 1.05rem;">Happy Clients</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6 mb-4">
+                                <div class="stat-item">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-handshake"></i>
+                                    </div>
+                                    <div class="stat-number" data-count="10">0</div>
+                                    <p style="font-size: 1.05rem;">Partners</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- SKILLS SECTION -->
+                <section id="skills" class="py-5">
+                    <div class="container">
+                        <h2 class="section-title">My Skills</h2>
+                        <p class="lead mb-5" style="font-size: 1.2rem;">Comprehensive IT expertise across multiple domains</p>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="skill-item">
+                                    <div class="skill-name">
+                                        <span><i class="fas fa-network-wired me-2"></i> Networks & Telecommunications</span>
+                                        <span>75%</span>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 75%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-item">
+                                    <div class="skill-name">
+                                        <span><i class="fas fa-sitemap me-2"></i> SharePoint & Power Platform</span>
+                                        <span>85%</span>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-item">
+                                    <div class="skill-name">
+                                        <span><i class="fas fa-headset me-2"></i> ICT Support</span>
+                                        <span>99%</span>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 99%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="skill-item">
+                                    <div class="skill-name">
+                                        <span><i class="fas fa-cloud me-2"></i> Cloud & Azure</span>
+                                        <span>80%</span>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 80%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-item">
+                                    <div class="skill-name">
+                                        <span><i class="fas fa-window-restore me-2"></i> Office 365</span>
+                                        <span>90%</span>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 90%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-item">
+                                    <div class="skill-name">
+                                        <span><i class="fas fa-clock me-2"></i> Time Management</span>
+                                        <span>80%</span>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 80%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mt-5">
+                            <div class="col-md-12">
+                                <p style="font-size: 1.05rem;">In my role as an IT professional, I provide comprehensive support to staff, helping them leverage technologies such as Microsoft 365, Power Platform, Cloud systems, Outlook, MS Teams, and more. I troubleshoot computer systems, networks, printers, and CCTV systems, conduct training sessions, manage software licenses, and ensure high levels of security for data and devices.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- EDUCATION SECTION -->
+                <section id="education" class="py-5 bg-light">
+                    <div class="container">
+                        <h2 class="section-title">Education</h2>
+                        
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-date">2019 - 2021</span>
+                                <h4>Master in Cloud Computer Networks</h4>
+                                <p><strong>Specialization:</strong> Advanced Data Centers, Cloud Infrastructure, Virtualized Networks, Cloud Security</p>
+                                <p style="font-size: 1rem;">Focused on modern cloud infrastructure, virtualization technologies, and advanced network security in cloud environments.</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <span class="timeline-date">2018 - 2019</span>
+                                <h4>Diploma in Information Systems & Technology</h4>
+                                <p><strong>Cairo University - GPA: Very Good</strong></p>
+                                <p style="font-size: 1rem;">Computer Sciences, Programming, Information Systems Development, Computer Networks, Web Applications Development, Project Management.</p>
+                                <ul style="font-size: 1rem;">
+                                    <li>Diploma of higher studies in Information Systems & Technology</li>
+                                    <li>Faculty of Graduate Studies for Statistical Research - Cairo University</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <span class="timeline-date">2015 - 2016</span>
+                                <h4>Diploma in Information Technology</h4>
+                                <p style="font-size: 1rem;">Comprehensive IT training covering hardware, software, networking fundamentals, and system administration.</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <span class="timeline-date">2008</span>
+                                <h4>High School Secondary Education</h4>
+                                <p style="font-size: 1rem;">Science and Mathematics specialization with focus on technical subjects.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- EXPERIENCE SECTION -->
+                <section id="experience" class="py-5">
+                    <div class="container">
+                        <h2 class="section-title">Work Experience</h2>
+                        
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-date">2015 - 2023</span>
+                                <h4>ICT Consultant</h4>
+                                <h5>ICT JICA</h5>
+                                <ul style="font-size: 1rem;">
+                                    <li>Developed global IT strategies and managed business risk optimization</li>
+                                    <li>Managed server room infrastructure (power, cooling, IT infrastructure, applications & assets)</li>
+                                    <li>Reported on efficiency, availability, capacity, and service levels</li>
+                                    <li>Supported staff in using Microsoft 365, Power Platform, Cloud systems, Outlook, MS Teams</li>
+                                    <li>Maintained and troubleshooted computer systems, networks, printers, CCTV systems</li>
+                                    <li>Applied highest security levels to data and devices</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <span class="timeline-date">2012 - 2015</span>
+                                <h4>IT Specialist</h4>
+                                <h5>IT Vinci</h5>
+                                <ul style="font-size: 1rem;">
+                                    <li>Installed and configured computer hardware, software, networks, printers, cameras</li>
+                                    <li>Configured and maintained routers, access points, antennae</li>
+                                    <li>Managed installation and maintenance of hardware and software for PCs, laptops, servers</li>
+                                    <li>Worked with servers, Cisco switches VLANs, routers</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <span class="timeline-date">2017 - 2018</span>
+                                <h4>Help Desk Technician</h4>
+                                <h5>Helpdesk Solutions</h5>
+                                <p style="font-size: 1rem;">Provided technical support and troubleshooting for various IT systems and software applications, ensuring minimal downtime and optimal performance.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- PORTFOLIO SECTION -->
+                <section id="portfolio" class="py-5 bg-light">
+                    <div class="container">
+                        <h2 class="section-title">Recent Projects</h2>
+                        <p class="lead text-center mb-5" style="font-size: 1.2rem;">Some of my successful IT implementations</p>
+                        
+                        <div class="row">
+                            <div class="col-md-4 mb-4">
+                                <div class="portfolio-card">
+                                    <div class="portfolio-icon">
+                                        <i class="fas fa-globe"></i>
+                                    </div>
+                                    <div class="portfolio-content">
+                                        <h5>Corporate Network Setup</h5>
+                                        <p style="font-size: 0.95rem;">Complete network infrastructure design and implementation for a 100+ employee company.</p>
+                                        <div class="d-flex justify-content-between mt-3">
+                                            <small><i class="fas fa-eye text-primary"></i> 100 views</small>
+                                            <small><i class="fas fa-heart text-danger"></i> 49 likes</small>
+                                            <small><i class="fas fa-share text-success"></i> 12 shares</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4 mb-4">
+                                <div class="portfolio-card">
+                                    <div class="portfolio-icon">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                    </div>
+                                    <div class="portfolio-content">
+                                        <h5>Azure Cloud Migration</h5>
+                                        <p style="font-size: 0.95rem;">Migration of on-premise infrastructure to Azure cloud with zero downtime.</p>
+                                        <div class="d-flex justify-content-between mt-3">
+                                            <small><i class="fas fa-eye text-primary"></i> 85 views</small>
+                                            <small><i class="fas fa-heart text-danger"></i> 32 likes</small>
+                                            <small><i class="fas fa-share text-success"></i> 8 shares</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4 mb-4">
+                                <div class="portfolio-card">
+                                    <div class="portfolio-icon">
+                                        <i class="fas fa-shield-alt"></i>
+                                    </div>
+                                    <div class="portfolio-content">
+                                        <h5>Security Implementation</h5>
+                                        <p style="font-size: 0.95rem;">Complete network security and data protection system implementation.</p>
+                                        <div class="d-flex justify-content-between mt-3">
+                                            <small><i class="fas fa-eye text-primary"></i> 120 views</small>
+                                            <small><i class="fas fa-heart text-danger"></i> 56 likes</small>
+                                            <small><i class="fas fa-share text-success"></i> 15 shares</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-4">
+                            <button id="loadMoreProjects" class="btn btn-outline-primary" style="padding: 0.7rem 2rem;">
+                                <i class="fas fa-redo me-2"></i> Load More Projects
+                            </button>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- BLOG SECTION -->
+                <section id="blog" class="py-5">
+                    <div class="container">
+                        <h2 class="section-title">Recent Blog</h2>
+                        <p class="lead text-center mb-5" style="font-size: 1.2rem;">Tech insights and updates</p>
+                        
+                        <div class="row">
+                            <div class="col-md-4 mb-4">
+                                <div class="blog-card">
+                                    <div class="blog-header">
+                                        <h5>Microsoft PC Manager</h5>
+                                        <div class="blog-meta">
+                                            <span><i class="fas fa-calendar"></i> Dec 27, 2023</span>
+                                            <span><i class="fas fa-comments"></i> 4 comments</span>
+                                        </div>
+                                    </div>
+                                    <div class="blog-content">
+                                        <p style="font-size: 0.95rem;">Boost your PC performance, cleanup system and free up spaces. Manage storage and perform health checkups.</p>
+                                        <p style="font-size: 0.95rem;">Scan and clear threats with one click. Download from Microsoft's official site.</p>
+                                        <button class="btn btn-sm btn-primary mt-2 read-more-btn" data-link="https://pcmanager.microsoft.com" style="padding: 0.4rem 1rem;">
+                                            <i class="fas fa-external-link-alt me-1"></i> Visit Site
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4 mb-4">
+                                <div class="blog-card">
+                                    <div class="blog-header">
+                                        <h5>Microsoft Store Guide</h5>
+                                        <div class="blog-meta">
+                                            <span><i class="fas fa-calendar"></i> Nov 14, 2023</span>
+                                            <span><i class="fas fa-comments"></i> 4 comments</span>
+                                        </div>
+                                    </div>
+                                    <div class="blog-content">
+                                        <p style="font-size: 0.95rem;">How to get mobile games and applications from Microsoft Store on your computer.</p>
+                                        <p style="font-size: 0.95rem;">The best way to get apps and games for Windows devices. Search for free and paid applications.</p>
+                                        <button class="btn btn-sm btn-primary mt-2 read-more-btn" style="padding: 0.4rem 1rem;">
+                                            <i class="fas fa-book-open me-1"></i> Read More
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4 mb-4">
+                                <div class="blog-card">
+                                    <div class="blog-header">
+                                        <h5>Power Platform Automation</h5>
+                                        <div class="blog-meta">
+                                            <span><i class="fas fa-calendar"></i> Oct 5, 2023</span>
+                                            <span><i class="fas fa-comments"></i> 3 comments</span>
+                                        </div>
+                                    </div>
+                                    <div class="blog-content">
+                                        <p style="font-size: 0.95rem;">Automating daily routine work using Power Automate and PowerApps instead of traditional methods.</p>
+                                        <p style="font-size: 0.95rem;">Streamline business processes and increase productivity with low-code solutions.</p>
+                                        <button class="btn btn-sm btn-primary mt-2 read-more-btn" style="padding: 0.4rem 1rem;">
+                                            <i class="fas fa-book-open me-1"></i> Read More
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-4">
+                            <button id="loadMoreBlog" class="btn btn-outline-primary" style="padding: 0.7rem 2rem;">
+                                <i class="fas fa-redo me-2"></i> Load More Articles
+                            </button>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- CONTACT SECTION -->
+                <section id="contact" class="py-5 bg-light">
+                    <div class="container">
+                        <h2 class="section-title">Contact Me</h2>
+                        <p class="lead text-center mb-5" style="font-size: 1.2rem;">Let's discuss your next project</p>
+                        
+                        <div class="row">
+                            <div class="col-md-5 mb-4">
+                                <div class="contact-info-card">
+                                    <div class="contact-icon">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <h5>Email</h5>
+                                    <p><a href="mailto:info@domain.com" class="text-decoration-none">info@domain.com</a></p>
+                                </div>
+                                
+                                <div class="contact-info-card">
+                                    <div class="contact-icon">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <h5>Location</h5>
+                                    <p>Giza, EGYPT</p>
+                                </div>
+                                
+                                <div class="contact-info-card">
+                                    <div class="contact-icon">
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                    <h5>Phone</h5>
+                                    <p><a href="tel:+020000000049" class="text-decoration-none">+02 0000 0000 49</a></p>
+                                </div>
+                                
+                                <div class="contact-info-card">
+                                    <div class="contact-icon">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <h5>Availability</h5>
+                                    <p>Monday - Friday: 9AM - 6PM</p>
+                                    <p>Response time: Within 24 hours</p>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-7">
+                                <div class="contact-info-card h-100">
+                                    <h4 class="mb-4">Send a Message</h4>
+                                    <form id="contactForm">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <input type="text" class="form-control" placeholder="Your Name" required style="padding: 0.8rem; font-size: 1rem;">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <input type="email" class="form-control" placeholder="Your Email" required style="padding: 0.8rem; font-size: 1rem;">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <input type="text" class="form-control" placeholder="Subject" required style="padding: 0.8rem; font-size: 1rem;">
+                                        </div>
+                                        <div class="mb-3">
+                                            <textarea class="form-control" rows="6" placeholder="Your Message" required style="padding: 0.8rem; font-size: 1rem;"></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-lg" style="padding: 0.8rem 2.5rem; font-size: 1.05rem;">
+                                            <i class="fas fa-paper-plane me-2"></i> Send Message
+                                        </button>
+                                    </form>
+                                    <div id="formMessage" class="mt-3" style="display: none; font-size: 1rem;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- FOOTER -->
+                <footer class="py-4" style="background: var(--primary-color); color: white;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p style="font-size: 0.95rem;">&copy; <span id="currentYear2"></span> Mostafa Salah - ICT Consultant. All rights reserved.</p>
+                            </div>
+                            <div class="col-md-6 text-md-end">
+                                <p style="font-size: 0.95rem;">Designed with <i class="fas fa-heart text-danger"></i> for the IT community</p>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        document.getElementById('currentYear2').textContent = new Date().getFullYear();
+        
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.querySelector('.sidebar');
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        if (menuToggle && sidebar) {
+            menuToggle.addEventListener('click', () => {
+                sidebar.classList.toggle('active');
+                menuToggle.innerHTML = sidebar.classList.contains('active') 
+                    ? '<i class="fas fa-times"></i>' 
+                    : '<i class="fas fa-bars"></i>';
+            });
+            
+            // Close sidebar when clicking on a link (mobile)
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    if (window.innerWidth < 992) {
+                        sidebar.classList.remove('active');
+                        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                    
+                    // Smooth scroll to section
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    
+                    if(targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Update active link
+                        document.querySelectorAll('.nav-links a').forEach(item => {
+                            item.classList.remove('active');
+                        });
+                        link.classList.add('active');
+                    }
+                });
+            });
+            
+            // Close sidebar when clicking outside (mobile)
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth < 992 && 
+                    sidebar.classList.contains('active') && 
+                    !sidebar.contains(e.target) && 
+                    !menuToggle.contains(e.target)) {
+                    sidebar.classList.remove('active');
+                    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+        }
+        
+        // Update active link on scroll
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if(pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Show/hide back to top button
+            if (backToTopBtn) {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            }
+        });
+        
+        // Back to top functionality
+        if (backToTopBtn) {
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+        
+        // PROFILE PHOTO UPLOAD FUNCTIONALITY
+        const photoUpload = document.getElementById('photoUpload');
+        const uploadTrigger = document.getElementById('uploadTrigger');
+        const profileImage = document.getElementById('profileImage');
+        const photoPlaceholder = document.querySelector('.photo-placeholder');
+        
+        if (uploadTrigger && photoUpload) {
+            uploadTrigger.addEventListener('click', () => {
+                photoUpload.click();
+            });
+            
+            photoUpload.addEventListener('change', function(e) {
+                if (this.files && this.files[0]) {
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        // Show the uploaded image
+                        profileImage.src = e.target.result;
+                        profileImage.style.display = 'block';
+                        
+                        // Hide the placeholder
+                        photoPlaceholder.style.display = 'none';
+                        
+                        // Save to localStorage so it persists
+                        localStorage.setItem('profilePhoto', e.target.result);
+                    }
+                    
+                    reader.readAsDataURL(this.files[0]);
+                }
+            });
+            
+            // Load saved photo from localStorage on page load
+            window.addEventListener('load', function() {
+                const savedPhoto = localStorage.getItem('profilePhoto');
+                if (savedPhoto) {
+                    profileImage.src = savedPhoto;
+                    profileImage.style.display = 'block';
+                    photoPlaceholder.style.display = 'none';
+                }
+            });
+        }
+        
+        // FIXED: Load More Projects button - doesn't jump to top
+        const loadMoreProjects = document.getElementById('loadMoreProjects');
+        if (loadMoreProjects) {
+            loadMoreProjects.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Loading more projects... (This is a demo. In a real site, this would load more content without refreshing.)');
+                // You can add AJAX functionality here to load more projects
+            });
+        }
+        
+        // FIXED: Read More buttons - don't jump to top
+        document.querySelectorAll('.read-more-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const link = this.getAttribute('data-link');
+                if (link && link.startsWith('http')) {
+                    window.open(link, '_blank');
+                } else {
+                    alert('This would open a detailed article page. (Demo mode)');
+                }
+            });
+        });
+        
+        // FIXED: Load More Blog button
+        const loadMoreBlog = document.getElementById('loadMoreBlog');
+        if (loadMoreBlog) {
+            loadMoreBlog.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Loading more blog articles... (This is a demo. In a real site, this would load more content.)');
+            });
+        }
+        
+        // Animated counter for stats
+        function animateCounter() {
+            const counters = document.querySelectorAll('.stat-number');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-count'));
+                const increment = target / 100;
+                let current = 0;
+                
+                const updateCounter = () => {
+                    if (current < target) {
+                        current += increment;
+                        counter.textContent = Math.ceil(current);
+                        setTimeout(updateCounter, 20);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
+                
+                // Start counter when in viewport
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            updateCounter();
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                observer.observe(counter);
+            });
+        }
+        
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize counter animation
+            animateCounter();
+            
+            // Form submission
+            const contactForm = document.getElementById('contactForm');
+            const formMessage = document.getElementById('formMessage');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Simulate form submission
+                    formMessage.textContent = 'Thank you for your message! I will get back to you soon.';
+                    formMessage.className = 'alert alert-success';
+                    formMessage.style.display = 'block';
+                    
+                    // Reset form
+                    contactForm.reset();
+                    
+                    // Hide message after 5 seconds
+                    setTimeout(() => {
+                        formMessage.style.display = 'none';
+                    }, 5000);
+                });
+            }
+            
+            // CV Download tracking (optional)
+            document.querySelector('a[download]')?.addEventListener('click', function() {
+                console.log('CV download initiated');
+                // You can add analytics tracking here
+            });
+        });
+    </script>
+</body>
+</html>
